@@ -73,11 +73,19 @@ class filters():
 		for clr in color:
 			if clr == '':
 				clr = '00'
-			col.append(str(hex(int("0x"+self.color[index], 16) + int("0x" + clr, 16))).replace("0x", ""))
+			col.append(
+				str(hex(int("0x"+self.color[index].replace("-",""), 16) + int("0x" + clr, 16))).replace("0x", ""))
 		try:
 			col[3]
 		except:
 			col.append(self.color[3])
+		index = 0
+		for clr in col:
+			i_clr = clr.__len__()-2
+			col[index] = clr[i_clr:clr.__len__()]
+			if col.__len__() < 2:
+				col[index] = "0" + col[index]
+			index += 1
 		self.color = (col[0], col[1], col[2], col[3])
 	
 	def decolorize(self, color):
@@ -125,12 +133,21 @@ class filters():
 		for clr in color:
 			if clr == '':
 				clr = '00'
-			col.append(str(hex(int("0x" + self.color[index], 16) - int("0x" + clr, 16))).replace("0x", ""))
+			col.append(
+				str(hex(int("0x"+self.color[index].replace("-",""), 16) - int("0x" + clr, 16))).replace("0x", ""))
 		try:
 			col[3]
 		except:
 			col.append(self.color[3])
+		index = 0
+		for clr in col:
+			i_clr = clr.__len__()-2
+			col[index] = clr[i_clr:clr.__len__()]
+			if col.__len__() < 2:
+				col[index] = "0" + col[index]
+			index += 1
 		self.color = (col[0], col[1], col[2], col[3])
+		print self.color
 	
 	def __str__(self):
 		clr = "#"

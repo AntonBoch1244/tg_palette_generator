@@ -32,8 +32,8 @@ for EV in plte.keys():
 	color = re.findall("(..)(..)(..)(..|)", col)
 	color = filters(color)
 	color.gray()
-	color.colorize(("aa", "00", "00"))
 	color = color.__str__()
+	#print color
 	p_plte.update({EV:color})
 plte = p_plte
 
